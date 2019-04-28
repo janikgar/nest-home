@@ -1,16 +1,29 @@
 {
   "name": "backend",
+  "main": "app.ts",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "node dist/out-tsc/backend/app.js"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
-    "http-errors": "~1.6.2",
-    "jade": "~1.11.0",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "passport": "^0.4.0",
+    "passport-oauth2": "^1.5.0",
+    "typescript": "^3.4.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/express": "^4.16.1",
+    "tslint": "^5.16.0"
   }
 }
