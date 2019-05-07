@@ -23,7 +23,7 @@ passport.use(new OAuth2Strategy({
     state: true,
     tokenURL: nest.token_url,
   },
-  (accessToken, refreshToken, profile, done) => {
+  (accessToken: string, _refreshToken: string, _profile: {}, done: Function) => {
     axios.default.get("https://developer-api.nest.com", {
       headers: {
         "Authorization" : `Bearer ${accessToken}`
@@ -68,7 +68,7 @@ app.get("/auth",
 
 app.get("/auth/callback",
   passport.authenticate("oauth2"),
-  (req, res) => {
+  (_req, res) => {
     res.redirect('/getBasic')
   },
   (req, res) => {
