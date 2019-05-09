@@ -3,6 +3,7 @@ import * as OAuth2Strategy from "passport-oauth2";
 import * as axios from "axios";
 import cookie_session = require('cookie-session');
 import { nest } from "../client-config.json";
+import * as actions_on_google from "actions-on-google";
 import passport = require('passport');
 
 const app = express();
@@ -79,18 +80,21 @@ app.get("/auth/callback",
 app.get("/getBasic",
   isAuthenticated,
   (req, res) => {
-    axios.default.get(
-      "https://developer-api.nest.com/",
-      { headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${req.user.token}`
-      }}
-    ).then(response => {
-      res.json(response.data);
-    }).catch(error => {
-      console.log(error);
-      res.send(error);
+    actions_on_google.smarthome({
+      
     })
+    // axios.default.get(
+    //   "https://developer-api.nest.com/",
+    //   { headers: {
+    //       "Content-Type": "application/json",
+    //       "Authorization": `Bearer ${req.user.token}`
+    //   }}
+    // ).then(response => {
+    //   res.json(response.data);
+    // }).catch(error => {
+    //   console.log(error);
+    //   res.send(error);
+    // })
   }
 )
 
